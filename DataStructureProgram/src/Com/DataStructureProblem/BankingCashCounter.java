@@ -5,8 +5,9 @@
  * b. I/P -> Panel to add People to Queue to Deposit or Withdraw Money and dequeue c. Logic ->
  * Write a Queue Class to enqueue and dequeue people to either deposit or withdraw money and
  * maintain the cash balance 
- * @author Pratik Chaudhari
- * @since 01/07/2021
+ 
+ * @author Official_vk
+ * @since 2021-07-28
  */
 package Com.DataStructureProblem;
 
