@@ -4,22 +4,25 @@ import java.util.NoSuchElementException;
 
 public class LinkedList<T> {
 	Node<T> head;
+	private int size = 0;
 
 	/**
 	 * Appends the specified element to the end of this list.
 	 */
 	public void add(T value) {
-		Node<T> newNode = new Node<>();
+		Node<T> newNode = new Node<T>();
 		newNode.value = value;
 		newNode.next = null;
 		if (head == null) {
 			head = newNode;
+			size++;
 		} else {
 			Node<T> currNode = head;
 			while (currNode.next != null) {
 				currNode = currNode.next;
 			}
 			currNode.next = newNode;
+			size++;
 		}
 	}
 
@@ -37,13 +40,14 @@ public class LinkedList<T> {
 	}
 
 	/**
-	 * Inserts the specified element at the start of the list.e
+	 * Inserts the specified element at the start of the list.
 	 */
 	public void addAtStart(T value) {
-		Node<T> newNode = new Node<>();
+		Node<T> newNode = new Node<T>();
 		newNode.value = value;
 		newNode.next = head;
 		head = newNode;
+		size++;
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class LinkedList<T> {
 		if (index == 0) {
 			addAtStart(value);
 		} else {
-			Node<T> newNode = new Node<>();
+			Node<T> newNode = new Node<T>();
 			newNode.value = value;
 			Node<T> nodeAtPreviousIndex = head;
 			for (int i = 0; i < index - 1; i++) {
@@ -61,6 +65,7 @@ public class LinkedList<T> {
 			}
 			newNode.next = nodeAtPreviousIndex.next;
 			nodeAtPreviousIndex.next = newNode;
+			size++;
 		}
 	}
 
@@ -89,6 +94,7 @@ public class LinkedList<T> {
 		Node<T> removedItem = head;
 		Node<T> newHead = head.next;
 		head = newHead;
+		size--;
 		return removedItem;
 	}
 
@@ -103,6 +109,7 @@ public class LinkedList<T> {
 			currNode = currNode.next;
 		}
 		prevNode.next = null;
+		size--;
 	}
 
 	/**
@@ -111,26 +118,30 @@ public class LinkedList<T> {
 	 * the lowest index {@code i} such that {@code Objects.equals(o, get(i))}, or -1
 	 * if there is no such index.
 	 */
-//	public <T extends Comparable<T>> int searchByValue(T value) {
-//		Node<T> currNode = (Node<T>) head;
-//		int index = 0;
-//		if (null != currNode) {
-//			while ((null != currNode.next) || (null != currNode.value)) {
-//				if (currNode.value.compareTo(value) == 0) {
-//					break;
-//				}
-//				currNode = currNode.next;
-//				if (null == currNode) {
-//					return -1;
-//				}
-//				index++;
-//			}
-//		}
-//		return index;
-//	}
+	public <T extends Comparable<T>> int searchByValue(T value) {
+		Node<T> currNode = (Node<T>) head;
+		int index = 0;
+		if (null != currNode) {
+			while ((null != currNode.next) || (null != currNode.value)) {
+				if (currNode.value.compareTo(value) == 0) {
+					break;
+				}
+				currNode = currNode.next;
+				if (null == currNode) {
+					return -1;
+				}
+				index++;
+			}
+		}
+		return index;
+	}
 
 	/**
 	 * Returns the element at the specified position in this list.
+	 *
+	 * @param index index of the element to return
+	 * @return the element at the specified position in this list
+	 * @throws IndexOutOfBoundsException {@inheritDoc}
 	 */
 	public T get(int index) {
 		if (head == null) {
@@ -164,6 +175,7 @@ public class LinkedList<T> {
 				currNode = currNode.next;
 			}
 			prevNode.next = currNode.next;
+			size--;
 		}
 	}
 

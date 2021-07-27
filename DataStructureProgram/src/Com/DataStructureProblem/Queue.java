@@ -13,6 +13,10 @@ public class Queue<T> {
 	/**
 	 * Pops an element from the stack represented by this list. In other words,
 	 * removes and returns the first element of this list
+	 *
+	 * @return the element at the front of this list (which is the top of the stack
+	 *         represented by this list)
+	 * @throws NoSuchElementException if this list is empty
 	 */
 	public Node<T> dequeue() {
 		return list.remove();
@@ -38,6 +42,10 @@ public class Queue<T> {
 
 	/**
 	 * Returns the element at the specified position in this list.
+	 *
+	 * @param index index of the element to return
+	 * @return the element at the specified position in this list
+	 * @throws IndexOutOfBoundsException {@inheritDoc}
 	 */
 	public T get(int index) {
 		return list.get(index);
