@@ -1,7 +1,12 @@
 /**
 * <h1>Welcome to the data structure problem !!</h1> 
-* The Data Structure Program implements an application that
-* simply displays "Welcome to the data structure problem !!" to the standard output.
+* <h2>Solve the Ordered list problem</h2>
+* purpose : Read a List of Numbers from a file and arrange it ascending Order
+* 			in a Linked List. Take user input for a number, if found then pop the number
+* out of the list else insert the number in appropriate position
+* <p><b>I/P --> </b>Read from file the list of Numbers and take user input for a new number</p>
+* <p><b>Logic :: </b>Create a Ordered Linked List having Numbers in ascending order.</p>
+* <p><b>O/P --> </b>The List of Numbers to a File.</p>
 * 
 * @author Official_vk
 * @version 1.0
@@ -17,45 +22,56 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DataStructureProblem<T> {
-	private static LinkedList<String> list = new LinkedList<String>();
+	private static SortedLinkedList<Integer> slist = new SortedLinkedList<Integer>();
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException {
 		// Prints Welcome to the data structure problem !! on standard output.
 		System.out.println("Welcome to the data structure problem !!");
-		System.out.println(" "); // single line space generate 
+		System.out.println(" "); // single line space generate
 		readFile();
-		System.out.println("Enter a word from list to search");
-		String searchWord = sc.nextLine();
-		int searchResult = list.searchByValue(searchWord);
+		System.out.println("Enter a number from the list to search");
+		int searchNumber = sc.nextInt();
+		int searchResult = slist.searchByValue(searchNumber);
 		if (searchResult == -1) {
-			list.add(searchWord);
+			slist.add(searchNumber);
+			slist.show();
 		} else {
-			list.removeAtIndex(searchResult);
+			slist.removeAtIndex(searchResult);
+			slist.show();
 		}
 		writeFile();
 	}
 
-	// This method writes an output file
+	/**
+	 * This method writes an output file
+	 *
+	 * @throws IOException
+	 */
 	private static void writeFile() throws IOException {
 		String str = "";
-		for (int i = 0; i < list.size(); i++) {
-			str = str.concat(list.get(i)).concat(" ");
+		for (int i = 0; i < slist.size(); i++) {
+			str = str.concat(String.valueOf(slist.get(i))).concat(",");
 		}
-		FileWriter fw = new FileWriter("C:\\Users\\vivek kumar\\eclipse-workspace\\DataStructureProblem\\DataStructureProgram\\Files\\Unorderlist.txt");
-		for (int i = 0; i < str.length(); i++)
+		FileWriter fw = new FileWriter("C:\\Users\\vivek kumar\\eclipse-workspace\\DataStructureProblem\\DataStructureProgram\\Files\\outputNumber.txt");
+		for (int i = 0; i < str.length(); i++) {
 			fw.write(str.charAt(i));
+		}
 		System.out.println("Writing successful");
 		fw.close();
 	}
 
-	// This method reads an input file
+	/**
+	 * This method reads an input file
+	 *
+	 * @throws IOException
+	 */
 	private static void readFile() throws IOException {
 		int ch;
 		FileReader fr = null;
 		String lines = "";
 		try {
-			fr = new FileReader("C:\\\\Users\\\\vivek kumar\\\\eclipse-workspace\\\\DataStructureProblem\\\\DataStructureProgram\\\\Files\\\\input.txt");
+			fr = new FileReader("C:\\Users\\vivek kumar\\eclipse-workspace\\DataStructureProblem\\DataStructureProgram\\Files\\inputNumber.txt");
 		} catch (FileNotFoundException fe) {
 			System.out.println("File not found");
 		}
@@ -66,10 +82,10 @@ public class DataStructureProblem<T> {
 		}
 		System.out.println();
 		fr.close();
-		String[] wordArray = lines.split(" ");
+		String[] wordArray = lines.split(",");
 		for (String word : wordArray) {
-			list.add(word);
+			slist.add(Integer.valueOf(word));
 		}
+		slist.show();
 	}
-
 }
