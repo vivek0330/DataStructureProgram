@@ -2,7 +2,7 @@
 * <h1>Welcome to the data structure problem !!</h1> 
 * <h2>Solve the Ordered list problem</h2>
 * purpose : Read a List of Numbers from a file and arrange it ascending Order
-* 			in a Linked List. Take user input for a number, if found then pop the number
+* 	    in a Linked List. Take user input for a number, if found then pop the number
 * out of the list else insert the number in appropriate position
 * <p><b>I/P --> </b>Read from file the list of Numbers and take user input for a new number</p>
 * <p><b>Logic :: </b>Create a Ordered Linked List having Numbers in ascending order.</p>
